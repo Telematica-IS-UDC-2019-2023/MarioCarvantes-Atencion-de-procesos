@@ -1,3 +1,3 @@
 const Procesador = require('./classes/procesador.js');
-var miProcesador = new Procesador();
-miProcesador.iniciar();
+var mProcesador = new Procesador();
+mProcesador.cinicio();

@@ -1,36 +1,36 @@
 const Proceso = require('./proceso.js');
 let Procesador = (function () {
     let inicio = null;
-    var tareaNo = 1;
-    var ciclosVacios = 0;
-    var procesosCompletados = 0;
-    var gg= 0;
+    var tareaN = 1;
+    var ciclosV = 0;
+    var Completados = 0;
+    var pendientes= 0;
     
-    const iniciar = () => {
+    const cinicio = () => {
         for (let ciclos = 0; ciclos <= 300; ciclos++) {
             if ((Math.floor(Math.random() * 100)) <= 39) {
-                let nuevaProceso = new Proceso(tareaNo);
-                agregar(nuevaProceso);
-                tareaNo++;
-                gg++;
-            }
+                let nProceso = new Proceso(tareaN);
+                agregar(nProceso);
+                tareaN++;
+                pendientes++;
+            }   
             if (inicio != null) {
-                if (inicio.ciclosRequeridos == 0) {
+                if (inicio.cRequeridos == 0) {
                     eliminar(inicio);
-                    procesosCompletados++;
-                    gg--;
+                    Completados++;
+                    pendientes--;
                 }
-                inicio.ciclosRequeridos--;
+                inicio.cRequeridos--;
                 inicio = inicio.siguiente;
             }
             if (inicio == null) {
-                ciclosVacios++;
+                ciclosV++;
             }
             mostrar();
         }
     }
     const mostrar = () => {
-        console.log(`Ciclos vacíos: ${ciclosVacios}\nProcesos realizados: ${procesosCompletados}\nProcesos Pendientes: ${gg}\n`);
+        console.log(`Ciclos vacíos: ${ciclosV}\nProcesos  ya realizados: ${Completados}\nProcesos que faltan: ${pendientes}\n`);
     }
     const agregar = (proceso) => {
         if (inicio == null) {
@@ -83,7 +83,7 @@ let Procesador = (function () {
         }
     }
     return {
-        iniciar: iniciar,
+        cinicio: cinicio,
         mostrar: mostrar,
     };
 });
